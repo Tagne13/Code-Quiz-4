@@ -1,15 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+    <!--Meta Tags-->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Title-->
     <title>Jeff's Code Quiz</title>
-    <link rel="stylesheet" href="./Assets/style.css">
+    <!--Local CSS-->
+    <link rel="stylesheet" href="./assets/style.css">
 </head>
+
 <body>
-    <header></header>
-    <main></main>
-    <script src="./Assets/script.js"></script>
+    <!--Header-->
+    <header>
+        <!--Link to High Scores-->
+        <button id="view-scores">View High Scores</button>
+        <!--Timer-->
+        <p class="timer">Time: 75</p>
+    </header>
+    <!--Main Content-->
+    <main>
+        <!--Greeting/Intro-->
+        <section id="intro">
+            <h1>JavaScript Coding Quiz Challenge</h1>
+            <p>Try to answer the following JavaScript code questions within the time limit. Keep in mind that incorrect
+                answers will penalize your score/time by 10 seconds!</p>
+            <button id="start">Start Quiz</button>
+        </section>
+        <!--Q&A Section-->
+        <section id="questions">
+
+        </section>
+        <!--Final Score-->
+        <section id="final">
+            <h2>All done!</h2>
+            <p>Your final score is: </p>
+            <p>Enter initials: <input placeholder="initials" /><button class="submit-score">Submit</button></p>
+        </section>
+        <!--High Scores Section-->
+        <section id="highscores">
+            <h2>High Scores</h2>
+            <ol></ol>
+            <button id="goback">Go Back</button>
+            <button id="clearscores">Clear High Scores</button>
+        </section>
+    </main>
+    <!--Footer-->
+    <footer>
+
+    </footer>
+    <!--JavaScript-->
+    <script src="./assets/script.js"></script>
 </body>
+
 </html>
