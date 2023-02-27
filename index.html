@@ -14,42 +14,48 @@
 
 <body>
     <!--Header-->
-    <header>
+    <header class="header">
         <!--Link to High Scores-->
-        <button id="view-scores">View High Scores</button>
+        <button id="view-scores" class="btn">View High Scores</button>
         <!--Timer-->
         <p class="timer">Time: 75</p>
     </header>
     <!--Main Content-->
-    <main>
+    <main class="container">
         <!--Greeting/Intro-->
         <section id="intro">
             <h1>JavaScript Coding Quiz Challenge</h1>
             <p>Try to answer the following JavaScript code questions within the time limit. Keep in mind that incorrect
                 answers will penalize your score/time by 10 seconds!</p>
-            <button id="start">Start Quiz</button>
+            <button id="start" class="btn">Start Quiz</button>
         </section>
         <!--Q&A Section-->
-        <section id="questions">
-
+        <section id="questions" class="hide">
+            <h2 id="question">Question</h2>
+            <ul id="alist">
+                <li class="achoice"><button id="answer1" class="btn">Answer1</button></li> 
+                <li class="achoice"><button id="answer2" class="btn">Answer2</button></li>
+                <li class="achoice"><button id="answer3" class="btn">Answer3</button></li>
+                <li class="achoice"><button id="answer4" class="btn">Answer4</button></li>
+            </ul>
         </section>
         <!--Final Score-->
-        <section id="final">
+        <section id="final" class="hide">
             <h2>All done!</h2>
             <p>Your final score is: </p>
-            <p>Enter initials: <input placeholder="initials" /><button class="submit-score">Submit</button></p>
+            <p>Enter initials: <input placeholder="initials" /><button id="submit-score" class="btn">Submit</button></p>
         </section>
         <!--High Scores Section-->
-        <section id="highscores">
+        <section id="highscores" class="hide">
             <h2>High Scores</h2>
             <ol></ol>
-            <button id="goback">Go Back</button>
-            <button id="clearscores">Clear High Scores</button>
+            <button id="goback" class="btn">Go Back</button>
+            <button id="clearscores" class="btn">Clear High Scores</button>
         </section>
     </main>
     <!--Footer-->
     <footer>
-
+        <h6>Made by Jeff Montagne PT, DPT, ATC &copy; 2023</h6>
     </footer>
     <!--JavaScript-->
     <script src="./assets/script.js"></script>
