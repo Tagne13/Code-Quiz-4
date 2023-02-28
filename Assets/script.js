@@ -9,17 +9,27 @@ let answer = null;
 
 // Sections
     // Intro
-
+const introEl = document.querySelector("#intro");
     // Questions
-
+const questionsEl = document.querySelector("#questions");
+let questionEl = document.querySelector("#question");
     // Final
-
+const finalEl = document.querySelector("#final");
     // High Scores
+const highScoresEl = document.querySelector("#highscores");
 
 //Buttons
+const viewScoreBtn = document.querySelector("#view-scores");
+const startBtn = document.querySelector("#start");
+const answer1Btn = document.querySelector("#answer1");
+const answer2Btn = document.querySelector("#answer2");
+const answer3Btn = document.querySelector("#answer3");
+const answer4Btn = document.querySelector("#answer4");
+const submitScoreBtn = document.querySelector("#submit-score");
+const goBackBtn = document.querySelector("#goback");
+const clearScoresBtn = document.querySelector("#clearscores");
 
 // Object for Q & A
-
 const questions = [
     {
         // Question 0
@@ -78,23 +88,23 @@ function checkClockCondition() {
 
     // Start quiz
 function startQuiz() {
- // set the question to the first question when the quiz starts
+ // Set the question to first question when the quiz starts
     setInterval(() => {
-        // check if the timer has reached 0
+        // Check if the timer has reached 0
         if (secondsLeft <= 0){
-            // if so stop the timer and end the quiz
+            // If so, stop the timer and end the quiz
         }
         
-        // check if the answer is correct
+        // Check if the answer is correct
         if (checkAnswer()){
             
-            // if correct add to the score 
+            // If correct, add to the score 
         }
         else if(answer === null){
-            // if not answered subtract the standard amount of time
+            // If not answered, subtract the standard amount of time
         }
         else{
-        // if incorrect subtract a larger amount of time
+        // If incorrect, subtract a larger amount of time
         }
     }, 1000)
 }
@@ -115,8 +125,8 @@ function checkAnswer() {
         }
     // returns true or false
 }
-    // Add score
-function addScore() {
+    // Submit score
+function submitScore() {
 
 }
     // Display score
@@ -131,7 +141,24 @@ function saveScore() {
 function clearScores() {
 
 }
+
 // Event Listeners
+    // View high scores
+viewScoreBtn.addEventListener("click", function() {
+
+});
+    // Start quiz
+startBtn.addEventListener("click", startQuiz);
+    // Check answers
+item.addEventListener("click", checkAnswer);
+    // Submit score
+submitScoresBtn.addEventListener("click", submitScore);
+    // Go back
+goBackBtn.addEventListener("click", function() {
+    
+})
+    // Clear high scores
+clearScoresBtn.addEventListener("click", clearScores);
 
 
 
