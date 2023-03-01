@@ -13,6 +13,7 @@ const introEl = document.querySelector("#intro");
     // Questions
 const questionsEl = document.querySelector("#questions");
 let questionEl = document.querySelector("#question");
+const rightWrongEl = document.querySelector("#right-wrong");
     // Final
 const finalEl = document.querySelector("#final");
     // High Scores
@@ -72,9 +73,9 @@ const questions = [
 // Functions
     // Timer
 function startTimer() {
-    timer = setInterval(function() {
+    let timer = setInterval(function() {
         timerCount--;
-        timerElement.textContent = timerCount;
+        timerEl.textContent = timerCount;
     })
 }
 
@@ -110,9 +111,17 @@ function startQuiz() {
 }
     // Set questions
 function setQuestions() {
+    if (i < questions.length) {
+        questionEl.textContent = questions[i].question;
+        answer1Btn.textContent = questions[i].answers[0];
+        answer2Btn.textContent = questions[i].answers[1];
+        answer3Btn.textContent = questions[i].answers[2];
+        answer4Btn.textContent = questions[i].answers[3];
+    }
 }
     // Check answer
-function checkAnswer() {
+function checkAnswer(event) {
+    event.preventDefault();
     // compares value of current question to the value of the answer
      if(questions[currentQuestion].correctAnswer === questions[currentQuestion].answers[answer])
         {
@@ -131,32 +140,51 @@ function submitScore() {
 }
     // Display score
 function displayScore() {
-
+    let storedScoreList = JSON.parse(localStorage.getItem("scoreList"));
+    if (storedScoreList !== null) {
+        scoreList = storedScoreList;
+    }
 }
     // Save score
 function saveScore() {
+    localStorage.setItem("scoreList", JSON.stringify(scoreList));
 
 }
     // Clear scores
 function clearScores() {
-
+    localStorage.clear();
+    scoreListEl.innerHTML="";
 }
 
 // Event Listeners
     // View high scores
 viewScoreBtn.addEventListener("click", function() {
-
+    if (highScoresEl.style.display === "none") {
+        highScoresEl.style.display = "block";
+    } else if (highScoresEl.style.display === "block") {
+        highScoresEl.style.display = "none";
+    } else {
+        return alert("no scores to show");
+    }
 });
+
     // Start quiz
 startBtn.addEventListener("click", startQuiz);
+
     // Check answers
 item.addEventListener("click", checkAnswer);
+
     // Submit score
 submitScoresBtn.addEventListener("click", submitScore);
+
     // Go back
 goBackBtn.addEventListener("click", function() {
-    
-})
+    highScoresEl.style.display = "none";
+    introEl.style.display = "block";
+    secondsLeft = 75000;
+    timeEl.textContent = "Time: " + secondsLeft;
+});
+
     // Clear high scores
 clearScoresBtn.addEventListener("click", clearScores);
 
