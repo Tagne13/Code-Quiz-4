@@ -1,23 +1,29 @@
 // Variables for HTML Elements
-    // Time and score
+    // Time/score
 let timeEl = document.querySelector("p.timer");
 let secondsLeft = 75000;
 let scoreEl = document.querySelector("p.score");
 let score = 0;
-let currentQuestion = 0;
 let answer = null;
 
 // Sections
     // Intro
 const introEl = document.querySelector("#intro");
+
     // Questions
 const questionsEl = document.querySelector("#questions");
 let questionEl = document.querySelector("#question");
+let currentQuestion = 0;
 const rightWrongEl = document.querySelector("#right-wrong");
+
     // Final
 const finalEl = document.querySelector("#final");
+let initialsInput = document.querySelector("#initials");
+
     // High Scores
 const highScoresEl = document.querySelector("#highscores");
+let scoreListEl = document.querySelector("#score-list");
+let scoreList = [];
 
 //Buttons
 const viewScoreBtn = document.querySelector("#view-scores");
@@ -110,7 +116,7 @@ function startQuiz() {
     }, 1000)
 }
     // Set questions
-function setQuestions() {
+function setQuestions(i) {
     if (i < questions.length) {
         questionEl.textContent = questions[i].question;
         answer1Btn.textContent = questions[i].answers[0];
@@ -122,30 +128,74 @@ function setQuestions() {
     // Check answer
 function checkAnswer(event) {
     event.preventDefault();
-    // compares value of current question to the value of the answer
-     if(questions[currentQuestion].correctAnswer === questions[currentQuestion].answers[answer])
-        {
-            // update answer to null
-            // update currentQuestion to the next question
-            return true;
-        }
-        else{
-            return false;
-        }
-    // returns true or false
-}
-    // Submit score
-function submitScore() {
 
+    // Show right or wrong answer and append message
+    rightWrongEl.style.display = "block";
+    let p = document.createElement("p");
+    rightWrongEl.appendChild(p);
+
+    // Time out after 1 second
+    setTimeout(function() {
+        p.style.display = "none";
+    }, 1000);
+
+    // Compare value of current question to the value of the answer
+     if(questions[currentQuestion].correctAnswer === questions[currentQuestion].answers[answer]) {
+        p.textContent = "Correct!";
+     } else if ([currentQuestion].correctAnswer !==  questions[currentQuestion].answers[answer])
+    {
+        secondsLeft = secondsLeft - 5;
+        p.textContent = "Wrong!";
+    }
+
+    // Update currentQuestion to the next question
+        if (currentQuestion < questions.length) {
+            currentQuestion++;
+        }
+    
+    // Bring in next question when answer button is clicked
+    setQuestions(currentQuestion);
 }
+
+    // Submit score
+function submitScore(event) {
+    event.preventDefault();
+
+    finalEl.style.display = "none";
+    highScoresEl.style.display = "block";
+
+    let init = initialsInput.value.toUpperCase();
+    scoreList.push({initials: init, score: secondsLeft});
+
+    scoreList = scoreList.sort((a,b) => {
+        if (a.score < b.score) {
+            return 1;
+        } else {
+            return -1;
+        }
+    });
+
+    scoreListEl.innerHTML="";
+    for (let i = 0; i < scoreList.length; i++) {
+        let li = document.createElement("li");
+        li.textContent = `${scoreList[i].initials}: ${scoreList[i].score}`;
+        scoreListEl.append(li);
+    }
+    // Add to local storage and display
+    saveScore();
+    displayScore();
+}
+
     // Display score
 function displayScore() {
+    // Get stored scores from local storage; parse string into object
     let storedScoreList = JSON.parse(localStorage.getItem("scoreList"));
+    // If scores were retrieved from local storage, update
     if (storedScoreList !== null) {
         scoreList = storedScoreList;
     }
 }
-    // Save score
+    // Save score to local storage and put into string
 function saveScore() {
     localStorage.setItem("scoreList", JSON.stringify(scoreList));
 
@@ -164,7 +214,7 @@ viewScoreBtn.addEventListener("click", function() {
     } else if (highScoresEl.style.display === "block") {
         highScoresEl.style.display = "none";
     } else {
-        return alert("no scores to show");
+        return alert("No scores to show!");
     }
 });
 
