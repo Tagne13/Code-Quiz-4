@@ -80,49 +80,36 @@ const questions = [
     // Timer
 function startTimer() {
     let timer = setInterval(function() {
-        timerCount--;
-        timerEl.textContent = timerCount;
-    })
+        secondsLeft--;
+        timerEl.textContent = secondsLeft;
+
+        if (secondsLeft === 0 || currentQuestion === questions.length) {
+            clearInterval(timer);
+            questionsEl.style.display = "none";
+            finalEl.style.display = "block";
+            scoreEl.textContent = secondsLeft;
+        }
+    }, 1000);
 }
 
-function checkClockCondition() {
-    if (timerCount <= 0) {
-        clearInterval(timer);
-        timerElement.textContent = "Time's up!";
-    }
-}
-
-
-    // Start quiz
+     // Start quiz
 function startQuiz() {
- // Set the question to first question when the quiz starts
-    setInterval(() => {
-        // Check if the timer has reached 0
-        if (secondsLeft <= 0){
-            // If so, stop the timer and end the quiz
-        }
-        
-        // Check if the answer is correct
-        if (checkAnswer()){
-            
-            // If correct, add to the score 
-        }
-        else if(answer === null){
-            // If not answered, subtract the standard amount of time
-        }
-        else{
-        // If incorrect, subtract a larger amount of time
-        }
-    }, 1000)
+    introEl.style.display = "none";
+    questionsEl.style.display = "block";
+    currentQuestion = 0;
+
+    startTimer();
+    setQuestions(currentQuestion);
 }
+
     // Set questions
-function setQuestions(i) {
-    if (i < questions.length) {
-        questionEl.textContent = questions[i].question;
-        answer1Btn.textContent = questions[i].answers[0];
-        answer2Btn.textContent = questions[i].answers[1];
-        answer3Btn.textContent = questions[i].answers[2];
-        answer4Btn.textContent = questions[i].answers[3];
+function setQuestions(id) {
+    if (id < questions.length) {
+        questionEl.textContent = questions[id].question;
+        answer1Btn.textContent = questions[id].answers[0];
+        answer2Btn.textContent = questions[id].answers[1];
+        answer3Btn.textContent = questions[id].answers[2];
+        answer4Btn.textContent = questions[id].answers[3];
     }
 }
     // Check answer
