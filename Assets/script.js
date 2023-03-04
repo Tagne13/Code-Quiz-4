@@ -1,10 +1,10 @@
 // Variables for HTML Elements
     // Time/score
-let timeEl = document.querySelector("p.timer");
-let secondsLeft = 75000;
+let timerEl = document.querySelector("p.timer");
+let secondsLeft = 75;
 let scoreEl = document.querySelector("p.score");
-let score = 0;
-let answer = null;
+// let score = 0;
+// let answer = null;
 
 // Sections
     // Intro
@@ -28,11 +28,12 @@ let scoreList = [];
 //Buttons
 const viewScoreBtn = document.querySelector("#view-scores");
 const startBtn = document.querySelector("#start");
+const ansBtn = document.querySelectorAll("button.ansBtn")
 const answer1Btn = document.querySelector("#answer1");
 const answer2Btn = document.querySelector("#answer2");
 const answer3Btn = document.querySelector("#answer3");
 const answer4Btn = document.querySelector("#answer4");
-const submitScoreBtn = document.querySelector("#submit-score");
+const submitScoresBtn = document.querySelector("#submit-score");
 const goBackBtn = document.querySelector("#goback");
 const clearScoresBtn = document.querySelector("#clearscores");
 
@@ -42,49 +43,49 @@ const questions = [
         // Question 0
         question: "Commonly used data types do NOT include:",
         answers: ["1. strings", "2. booleans", "3. alerts", "4. numbers"],
-        correctAnswer: 2
+        correctAnswer: "2"
     },
     {
         // Question 1
         question: "The condition in an if/else statement is enclosed within _____.",
         answers: ["1. quotes", "2. curly brackets", "3. parentheses", "4. square brackets"],
-        correctAnswer: 1
+        correctAnswer: "1"
     },
     {
         // Question 2
         question: "Arrays in JavaScript can be used to store _____.",
         answers: ["1. numbers and strings", "2. other arrays", "3. booleans", "4. all of the above"],
-        correctAnswer: 3
+        correctAnswer: "3"
     },
     {
         // Question 3
         question: "String values must be closed within _____ when being assigned to variables.",
         answers: ["1. commas", "2. curly brackets", "3. quotes", "4. parentheses"],
-        correctAnswer: 2
+        correctAnswer: "2"
     },
     {
         // Question 4
         question: "A very useful tool used during development and debugging for printing content to the debugger is:",
         answers: ["1. JavaScript", "2. terminal/bash", "3. for loops", "4. console.log"],
-        correctAnswer: 3
+        correctAnswer: "3"
     },
     {
         // Question 5
         question: "Which of the following is used to define a variable in JavaScript?",
         answers: ["1. var", "2. const", "3. let", "4. all of the above"],
-        correctAnswer: 3
+        correctAnswer: "3"
     },
 ];
 
 // Functions
     // Timer
 function startTimer() {
-    let timer = setInterval(function() {
+    let timerInterval = setInterval(function() {
         secondsLeft--;
-        timerEl.textContent = secondsLeft;
+        timerEl.textContent = `Time:${secondsLeft}`;
 
         if (secondsLeft === 0 || currentQuestion === questions.length) {
-            clearInterval(timer);
+            clearInterval(timerInterval);
             questionsEl.style.display = "none";
             finalEl.style.display = "block";
             scoreEl.textContent = secondsLeft;
@@ -127,11 +128,10 @@ function checkAnswer(event) {
     }, 1000);
 
     // Compare value of current question to the value of the answer
-     if(questions[currentQuestion].correctAnswer === questions[currentQuestion].answers[answer]) {
+     if(questions[currentQuestion].correctAnswer === event.target.value) {
         p.textContent = "Correct!";
-     } else if ([currentQuestion].correctAnswer !==  questions[currentQuestion].answers[answer])
-    {
-        secondsLeft = secondsLeft - 5;
+     } else if (questions[currentQuestion].correctAnswer !== event.target.value) {
+        secondsLeft = secondsLeft - 10;
         p.textContent = "Wrong!";
     }
 
@@ -173,6 +173,11 @@ function submitScore(event) {
     displayScore();
 }
 
+ // Save score to local storage and put into string
+ function saveScore() {
+    localStorage.setItem("scoreList", JSON.stringify(scoreList));
+ }
+
     // Display score
 function displayScore() {
     // Get stored scores from local storage; parse string into object
@@ -182,11 +187,7 @@ function displayScore() {
         scoreList = storedScoreList;
     }
 }
-    // Save score to local storage and put into string
-function saveScore() {
-    localStorage.setItem("scoreList", JSON.stringify(scoreList));
 
-}
     // Clear scores
 function clearScores() {
     localStorage.clear();
@@ -209,7 +210,9 @@ viewScoreBtn.addEventListener("click", function() {
 startBtn.addEventListener("click", startQuiz);
 
     // Check answers
+ansBtn.forEach(item => {
 item.addEventListener("click", checkAnswer);
+});
 
     // Submit score
 submitScoresBtn.addEventListener("click", submitScore);
@@ -218,8 +221,8 @@ submitScoresBtn.addEventListener("click", submitScore);
 goBackBtn.addEventListener("click", function() {
     highScoresEl.style.display = "none";
     introEl.style.display = "block";
-    secondsLeft = 75000;
-    timeEl.textContent = "Time: " + secondsLeft;
+    secondsLeft = 75;
+    timeEl.textContent = `Time:${secondsLeft}`;
 });
 
     // Clear high scores
