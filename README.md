@@ -2,6 +2,13 @@
 
 ## Description
 
+Provide a short description explaining the what, why, and how of your project. Use the following questions as a guide:
+
+- What was your motivation?
+- Why did you build this project? (Note: the answer is not "Because it was a homework assignment.")
+- What problem does it solve?
+- What did you learn?
+
 User Story
 AS A coding boot camp student
 I WANT to take a timed quiz on JavaScript fundamentals that stores high scores
@@ -31,7 +38,7 @@ Website: https://tagne13.github.io/Code-Quiz-4/
 
 Repository: https://github.com/Tagne13/Code-Quiz-4.git 
 
-
+![Screenshot](./assets/images/Screenshot.png)
 
 ## Credits
 
