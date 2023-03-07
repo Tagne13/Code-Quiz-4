@@ -33,7 +33,7 @@ Website: https://tagne13.github.io/Code-Quiz-4/
 
 Repository: https://github.com/Tagne13/Code-Quiz-4.git 
 
-![Screenshot](./assets/images/Screenshot.png)
+![Screenshot](Assets/images/Screenshot.png)
 
 ## Credits
 
