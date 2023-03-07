@@ -42,6 +42,11 @@ Repository: https://github.com/Tagne13/Code-Quiz-4.git
 
 ## Credits
 
+
+
 ## License 
 
 Please refer to the license in the repo.
+
+
+[def]: ./assets/images/Screenshot.png

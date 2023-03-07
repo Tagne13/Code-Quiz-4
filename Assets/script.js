@@ -2,9 +2,7 @@
     // Time/score
 let timerEl = document.querySelector("p.timer");
 let secondsLeft = 75;
-let scoreEl = document.querySelector("p.score");
-// let score = 0;
-// let answer = null;
+let scoreEl = document.querySelector(".score");
 
 // Sections
     // Intro
@@ -43,37 +41,37 @@ const questions = [
         // Question 0
         question: "Commonly used data types do NOT include:",
         answers: ["1. strings", "2. booleans", "3. alerts", "4. numbers"],
-        correctAnswer: "2"
+        correctAnswer: "3. alerts"
     },
     {
         // Question 1
         question: "The condition in an if/else statement is enclosed within _____.",
         answers: ["1. quotes", "2. curly brackets", "3. parentheses", "4. square brackets"],
-        correctAnswer: "1"
+        correctAnswer: "2. curly brackets"
     },
     {
         // Question 2
         question: "Arrays in JavaScript can be used to store _____.",
         answers: ["1. numbers and strings", "2. other arrays", "3. booleans", "4. all of the above"],
-        correctAnswer: "3"
+        correctAnswer: "4. all of the above"
     },
     {
         // Question 3
         question: "String values must be closed within _____ when being assigned to variables.",
         answers: ["1. commas", "2. curly brackets", "3. quotes", "4. parentheses"],
-        correctAnswer: "2"
+        correctAnswer: "3. quotes"
     },
     {
         // Question 4
         question: "A very useful tool used during development and debugging for printing content to the debugger is:",
         answers: ["1. JavaScript", "2. terminal/bash", "3. for loops", "4. console.log"],
-        correctAnswer: "3"
+        correctAnswer: "4. console.log"
     },
     {
         // Question 5
         question: "Which of the following is used to define a variable in JavaScript?",
         answers: ["1. var", "2. const", "3. let", "4. all of the above"],
-        correctAnswer: "3"
+        correctAnswer: "4. all of the above"
     },
 ];
 
@@ -106,6 +104,7 @@ function startQuiz() {
     // Set questions
 function setQuestions(id) {
     if (id < questions.length) {
+        console.log(questions[id]);
         questionEl.textContent = questions[id].question;
         answer1Btn.textContent = questions[id].answers[0];
         answer2Btn.textContent = questions[id].answers[1];
@@ -115,6 +114,8 @@ function setQuestions(id) {
 }
     // Check answer
 function checkAnswer(event) {
+    console.log(event.target)
+    console.log(questions[currentQuestion].correctAnswer);
     event.preventDefault();
 
     // Show right or wrong answer and append message
@@ -128,9 +129,9 @@ function checkAnswer(event) {
     }, 1000);
 
     // Compare value of current question to the value of the answer
-     if(questions[currentQuestion].correctAnswer === event.target.value) {
+     if(questions[currentQuestion].correctAnswer === event.target.innerHTML) {
         p.textContent = "Correct!";
-     } else if (questions[currentQuestion].correctAnswer !== event.target.value) {
+     } else if (questions[currentQuestion].correctAnswer !== event.target.innerHTML) {
         secondsLeft = secondsLeft - 10;
         p.textContent = "Wrong!";
     }
