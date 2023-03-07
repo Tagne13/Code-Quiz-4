@@ -2,12 +2,7 @@
 
 ## Description
 
-Provide a short description explaining the what, why, and how of your project. Use the following questions as a guide:
-
-- What was your motivation?
-- Why did you build this project? (Note: the answer is not "Because it was a homework assignment.")
-- What problem does it solve?
-- What did you learn?
+The purpose of this application is to test students on their knowledge of JavaScript. In a multiple choice format, student will be presented with a question and select the correct answer. If selected incorrectly, time will be deducted from the running quiz time resulting in a lower overall score on the quiz. Students will be able to save their scores in order to try and beat the top score. The application combines basic JavaScript with HTML and CSS code to create an interactive, functional application. 
 
 User Story
 AS A coding boot camp student
@@ -42,7 +37,10 @@ Repository: https://github.com/Tagne13/Code-Quiz-4.git
 
 ## Credits
 
-
+- Credit to class TA Will and mentor Geraldo for assistance with debugging and help with the timer function. 
+- https://www.youtube.com/watch?v=AFTvxsVv52k&t=595s: guidance with HTML.
+- https://www.interviewbit.com/javascript-mcq/: additional question used.
+- Other questions taken from example in class module.
 
 ## License 
 
